@@ -8,5 +8,6 @@ This is simple application to demonstrate simple layered architecture with eleme
 * MongoDB
 * Spock for unit tests
 * JUnit 5 for E2E tests
+* Vavr
 
 
