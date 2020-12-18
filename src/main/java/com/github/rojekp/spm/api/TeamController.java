@@ -2,10 +2,13 @@ package com.github.rojekp.spm.api;
 
 import com.github.rojekp.spm.application.TeamService;
 import com.github.rojekp.spm.application.dto.EmployeeDto;
+import com.github.rojekp.spm.application.dto.ExistingTeamDto;
 import com.github.rojekp.spm.application.dto.TeamDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,6 +27,12 @@ public class TeamController {
     @PostMapping("/{teamName}/members")
     public void addMemberToTeam(@PathVariable String teamName, @RequestBody EmployeeDto employeeDto) {
         teamService.addMemberToTeam(teamName, employeeDto);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping()
+    public List<ExistingTeamDto> getTeams() {
+        return teamService.getTeams();
     }
 
 }

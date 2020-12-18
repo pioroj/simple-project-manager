@@ -1,15 +1,19 @@
 package com.github.rojekp.spm.application;
 
 import com.github.rojekp.spm.application.dto.EmployeeDto;
+import com.github.rojekp.spm.application.dto.ExistingTeamDto;
 import com.github.rojekp.spm.application.dto.TeamDto;
 import com.github.rojekp.spm.domain.team.Team;
 import com.github.rojekp.spm.domain.team.TeamRepository;
 import com.github.rojekp.spm.domain.values.Employee;
-import com.github.rojekp.spm.application.dto.DtoMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+import static com.github.rojekp.spm.application.dto.DtoMapper.mapToEmployee;
+import static com.github.rojekp.spm.application.dto.DtoMapper.mapToExistingTeams;
 import static com.github.rojekp.spm.domain.exception.ErrorCode.NONEXISTENT_TEAM;
 import static com.github.rojekp.spm.domain.exception.ErrorCode.TEAM_ALREADY_EXISTS;
 import static com.github.rojekp.spm.domain.exception.ValidationCondition.when;
@@ -34,8 +38,13 @@ public class TeamService {
         Team team = teamRepository.findByName(teamName);
         when(team == null)
                 .thenMissingEntity(NONEXISTENT_TEAM, "Error adding employee to team " + teamName + ".");
-        Employee employee = DtoMapper.mapToEmployee(employeeDto);
+        Employee employee = mapToEmployee(employeeDto);
         team.addMember(employee);
         teamRepository.save(team);
+    }
+
+    public List<ExistingTeamDto> getTeams() {
+        List<Team> teams = teamRepository.findAll();
+        return mapToExistingTeams(teams);
     }
 }

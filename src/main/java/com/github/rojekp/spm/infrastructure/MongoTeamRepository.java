@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
 
@@ -30,5 +32,10 @@ class MongoTeamRepository implements TeamRepository {
     @Override
     public Team findByName(String teamName) {
         return mongoTemplate.findById(teamName, Team.class, TEAMS_COLLECTION);
+    }
+
+    @Override
+    public List<Team> findAll() {
+        return mongoTemplate.findAll(Team.class, TEAMS_COLLECTION);
     }
 }

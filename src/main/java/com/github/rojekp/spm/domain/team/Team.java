@@ -13,6 +13,8 @@ import static com.github.rojekp.spm.domain.exception.ValidationCondition.when;
 @Getter
 public class Team {
 
+    private static final int BUSY_TEAM_THRESHOLD = 3;
+
     @Id
     private String name;
     private int currentlyImplementedProjects;
@@ -28,6 +30,10 @@ public class Team {
     public void addMember(Employee employee) {
         validateMember(employee, "Error adding member to " + name + " team.");
         members.add(employee);
+    }
+
+    public boolean isBusy() {
+        return currentlyImplementedProjects > BUSY_TEAM_THRESHOLD;
     }
 
     private void validateMember(Employee employee, String message) {
