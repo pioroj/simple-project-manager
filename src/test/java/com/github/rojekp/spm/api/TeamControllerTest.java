@@ -94,7 +94,7 @@ public class TeamControllerTest extends BasicE2EConfiguration {
 
     private void prepareTeamWithName(String teamName) {
         TeamDto teamDto = new TeamDto();
-        teamDto.setName(TEAM_NAME);
+        teamDto.setName(teamName);
 
         post("/api/teams", teamDto);
     }

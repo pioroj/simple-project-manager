@@ -16,9 +16,9 @@ public class Team {
     private static final int BUSY_TEAM_THRESHOLD = 3;
 
     @Id
-    private String name;
-    private int currentlyImplementedProjects;
-    private List<Employee> members;
+    private final String name;
+    private final int currentlyImplementedProjects;
+    private final List<Employee> members;
 
     public Team(String name) {
         validateName(name);

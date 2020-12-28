@@ -1,4 +1,4 @@
-package com.github.rojekp.spm.infrastructure;
+package com.github.rojekp.spm.infrastructure.persistance;
 
 import com.github.rojekp.spm.domain.team.Team;
 import com.github.rojekp.spm.domain.team.TeamRepository;
