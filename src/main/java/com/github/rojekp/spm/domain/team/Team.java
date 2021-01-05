@@ -2,6 +2,7 @@ package com.github.rojekp.spm.domain.team;
 
 import com.github.rojekp.spm.domain.values.Employee;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
@@ -11,14 +12,15 @@ import static com.github.rojekp.spm.domain.exception.ErrorCode.*;
 import static com.github.rojekp.spm.domain.exception.ValidationCondition.when;
 
 @Getter
+@NoArgsConstructor
 public class Team {
 
     private static final int BUSY_TEAM_THRESHOLD = 3;
 
     @Id
-    private final String name;
-    private final int currentlyImplementedProjects;
-    private final List<Employee> members;
+    private String name;
+    private int currentlyImplementedProjects;
+    private List<Employee> members;
 
     public Team(String name) {
         validateName(name);
